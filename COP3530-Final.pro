@@ -9,13 +9,19 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    csvreader.cpp \
     main.cpp \
     mainwindow.cpp \
+    sorter.cpp \
+    sortingbuttons.cpp \
     table.cpp
 
 HEADERS += \
+    csvreader.h \
     location.h \
     mainwindow.h \
+    sorter.h \
+    sortingbuttons.h \
     table.h
 
 FORMS += \

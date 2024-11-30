@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 #include <location.h>
 #include <QMainWindow>
+#include "SortingButtons.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -19,5 +20,6 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    SortingButtons *sortingButtons;
 };
 #endif // MAINWINDOW_H

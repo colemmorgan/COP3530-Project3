@@ -71,10 +71,17 @@ background-color: #343434;
 border-bottom: 1px solid #505050;
 }
 
-QWidget  &gt; QPushButton,  QWidget  &gt; QComboBox {
+QWidget  &gt; QPushButton  {
  	background-color: #505050;
     border: none;
 	border-right: 1px solid #242424;
+    color: #ffffff; 
+}
+
+
+ QWidget  &gt; QComboBox {
+	background-color: #505050;
+    border: none;
     color: #ffffff; 
 }</string>
       </property>
@@ -144,7 +151,7 @@ QWidget  &gt; QPushButton,  QWidget  &gt; QComboBox {
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="household_sorter">
+         <widget class="QPushButton" name="households_sorter">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -218,21 +225,28 @@ QWidget  &gt; QPushButton,  QWidget  &gt; QComboBox {
     <item>
      <widget class="QTableWidget" name="locationTable">
       <property name="styleSheet">
-       <string notr="true">QHeaderView::section {
+       <string notr="true">QTableWidget {
+border: none;
+color: #d4d4d4
+}
+QHeaderView::section {
     background-color: #343434;
     color: white;
-    border: 1px solid #404040;
+    border: 1px solid #404040 !important;
     padding: 5px;
 }
 
 QTableCornerButton::section {
     background-color: #343434; 
-    border: 1px solid #404040; 
+    border: 1px solid #404040 !important; 
 }
 
 QTableWidget::item {
-    border: 1px solid #343434; 
+    border: 1px solid #292929 !important;
+    padding: 2px;
+    margin: 0px;
 }
+
 </string>
       </property>
      </widget>

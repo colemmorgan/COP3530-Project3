@@ -37,11 +37,11 @@ std::vector<Location> Table::generateLocations(int count) {
 void Table::populate(QTableWidget *tableWidget, const std::vector<Location> &locations) {
 
     tableWidget->setRowCount(locations.size());
-    tableWidget->setColumnCount(8); // Number of attributes in Location
+    tableWidget->setColumnCount(9); // Number of attributes in Location
 
     tableWidget->setHorizontalHeaderLabels({
         "Tract Code", "Block Group", "Name", "Population",
-        "Households", "Employment", "Size", "Walkability", "Transit Score"
+        "Households", "Employment", "Size", "Walkability", "Transit"
     });
 
     // Populate the table
