@@ -1,7 +1,6 @@
 #include "sorter.h"
 
 
-
 double Sorter::mergeSort(std::vector<Location> *locations, std::string attribute) {
     return 1.0;
 }

@@ -3,6 +3,7 @@
 #include "location.h"
 #include <QTableWidget>
 #include <QTableWidgetItem>
+#include <QDebug>
 #include <vector>
 #include "table.h"
 
@@ -27,6 +28,8 @@ MainWindow::MainWindow(QWidget *parent)
     std::vector<Location> locations = Table::generateLocations(100);
     Table::populate(ui->locationTable, locations);
 
+    connect(ui->sort, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onSortByChanged);
+
 }
 
 MainWindow::~MainWindow()
@@ -34,3 +37,9 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+void MainWindow::onSortByChanged(int index)
+{
+
+    if(sortingButtons->getSelectedButtonName().empty()) return;
+}

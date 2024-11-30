@@ -40,7 +40,7 @@ public:
     QPushButton *households_sorter;
     QPushButton *transit_sorter;
     QLabel *label;
-    QComboBox *comboBox;
+    QComboBox *sort;
     QTableWidget *locationTable;
     QWidget *bottom;
     QHBoxLayout *horizontalLayout_2;
@@ -160,24 +160,30 @@ public:
 
         label = new QLabel(horizontalLayoutWidget);
         label->setObjectName("label");
-        sizePolicy2.setHeightForWidth(label->sizePolicy().hasHeightForWidth());
-        label->setSizePolicy(sizePolicy2);
+        QSizePolicy sizePolicy3(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Expanding);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(label->sizePolicy().hasHeightForWidth());
+        label->setSizePolicy(sizePolicy3);
+        label->setStyleSheet(QString::fromUtf8("padding-left: 18px;\n"
+"padding-right: 18px;\n"
+""));
         label->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         horizontalLayout->addWidget(label);
 
-        comboBox = new QComboBox(horizontalLayoutWidget);
-        comboBox->addItem(QString());
-        comboBox->addItem(QString());
-        comboBox->setObjectName("comboBox");
-        sizePolicy2.setHeightForWidth(comboBox->sizePolicy().hasHeightForWidth());
-        comboBox->setSizePolicy(sizePolicy2);
-        comboBox->setStyleSheet(QString::fromUtf8("QComboBox {\n"
+        sort = new QComboBox(horizontalLayoutWidget);
+        sort->addItem(QString());
+        sort->addItem(QString());
+        sort->setObjectName("sort");
+        sizePolicy2.setHeightForWidth(sort->sizePolicy().hasHeightForWidth());
+        sort->setSizePolicy(sizePolicy2);
+        sort->setStyleSheet(QString::fromUtf8("QComboBox {\n"
 "    padding-left: 12px; \n"
 "    padding-right: 8px; \n"
 "}"));
 
-        horizontalLayout->addWidget(comboBox);
+        horizontalLayout->addWidget(sort);
 
 
         verticalLayout->addWidget(top);
@@ -231,11 +237,11 @@ public:
         horizontalLayout_3->setSizeConstraint(QLayout::SizeConstraint::SetDefaultConstraint);
         label_2 = new QLabel(bottom);
         label_2->setObjectName("label_2");
-        QSizePolicy sizePolicy3(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Preferred);
-        sizePolicy3.setHorizontalStretch(0);
-        sizePolicy3.setVerticalStretch(0);
-        sizePolicy3.setHeightForWidth(label_2->sizePolicy().hasHeightForWidth());
-        label_2->setSizePolicy(sizePolicy3);
+        QSizePolicy sizePolicy4(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Preferred);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(0);
+        sizePolicy4.setHeightForWidth(label_2->sizePolicy().hasHeightForWidth());
+        label_2->setSizePolicy(sizePolicy4);
         label_2->setStyleSheet(QString::fromUtf8(""));
 
         horizontalLayout_3->addWidget(label_2);
@@ -263,11 +269,8 @@ public:
 
         lineEdit_2 = new QLineEdit(bottom);
         lineEdit_2->setObjectName("lineEdit_2");
-        QSizePolicy sizePolicy4(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Expanding);
-        sizePolicy4.setHorizontalStretch(0);
-        sizePolicy4.setVerticalStretch(0);
-        sizePolicy4.setHeightForWidth(lineEdit_2->sizePolicy().hasHeightForWidth());
-        lineEdit_2->setSizePolicy(sizePolicy4);
+        sizePolicy3.setHeightForWidth(lineEdit_2->sizePolicy().hasHeightForWidth());
+        lineEdit_2->setSizePolicy(sizePolicy3);
         lineEdit_2->setMaximumSize(QSize(100, 16777215));
         lineEdit_2->setAlignment(Qt::AlignmentFlag::AlignCenter);
         lineEdit_2->setReadOnly(true);
@@ -301,8 +304,8 @@ public:
 
         lineEdit_3 = new QLineEdit(bottom);
         lineEdit_3->setObjectName("lineEdit_3");
-        sizePolicy4.setHeightForWidth(lineEdit_3->sizePolicy().hasHeightForWidth());
-        lineEdit_3->setSizePolicy(sizePolicy4);
+        sizePolicy3.setHeightForWidth(lineEdit_3->sizePolicy().hasHeightForWidth());
+        lineEdit_3->setSizePolicy(sizePolicy3);
         lineEdit_3->setMaximumSize(QSize(100, 16777215));
 
         horizontalLayout_3->addWidget(lineEdit_3);
@@ -334,8 +337,8 @@ public:
         households_sorter->setText(QCoreApplication::translate("MainWindow", "Households", nullptr));
         transit_sorter->setText(QCoreApplication::translate("MainWindow", "Public Transit Score", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Sort By:", nullptr));
-        comboBox->setItemText(0, QCoreApplication::translate("MainWindow", "Highest", nullptr));
-        comboBox->setItemText(1, QCoreApplication::translate("MainWindow", "Lowest", nullptr));
+        sort->setItemText(0, QCoreApplication::translate("MainWindow", "Highest", nullptr));
+        sort->setItemText(1, QCoreApplication::translate("MainWindow", "Lowest", nullptr));
 
         label_2->setText(QCoreApplication::translate("MainWindow", "Rows Sorted:", nullptr));
         lineEdit->setText(QCoreApplication::translate("MainWindow", "2 million", nullptr));

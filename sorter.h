@@ -3,6 +3,7 @@
 #include "location.h"
 #include <string>
 #include <vector>
+
 class Sorter
 {
 public:

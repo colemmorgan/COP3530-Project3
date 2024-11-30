@@ -4,7 +4,7 @@
 #include <QString>
 #include <QTableWidgetItem>
 
-
+// temp: generate fake data
 std::vector<Location> Table::generateLocations(int count) {
     std::vector<Location> locations;
 
@@ -37,7 +37,7 @@ std::vector<Location> Table::generateLocations(int count) {
 void Table::populate(QTableWidget *tableWidget, const std::vector<Location> &locations) {
 
     tableWidget->setRowCount(locations.size());
-    tableWidget->setColumnCount(9); // Number of attributes in Location
+    tableWidget->setColumnCount(9);
 
     tableWidget->setHorizontalHeaderLabels({
         "Tract Code", "Block Group", "Name", "Population",

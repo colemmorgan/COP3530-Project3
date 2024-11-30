@@ -16,4 +16,9 @@ void SortingButtons::handleButtonClicked(QAbstractButton *button) {
     }
 
     button->setStyleSheet(selectedStyle);
+    selectedButtonName = button->objectName().toStdString();
+}
+
+std::string SortingButtons::getSelectedButtonName() {
+    return selectedButtonName;
 }
