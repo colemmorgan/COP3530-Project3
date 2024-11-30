@@ -1,0 +1,17 @@
+# Ignore build directory
+build/
+
+# Ignore Qt Creator Clangd cache
+.qtc_clangd/
+*.idx
+
+# Ignore Qt Creator user-specific files
+*.pro.user
+*.qmake.stash
+*.autosave
+
+# Ignore temporary files
+*.tmp
+*.bak
+*.swp
+*.csv
