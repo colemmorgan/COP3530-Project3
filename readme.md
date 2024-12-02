@@ -3,7 +3,9 @@ Relocation Assistant
 This is a C++ application built using the Qt framework.
 
 
-Requirements
+Requirements:
+
+
 To run this application, you will need:
 
 Qt Framework: Install Qt Creator or the Qt SDK for your platform.
