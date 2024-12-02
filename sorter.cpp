@@ -63,14 +63,12 @@ bool compareLocations(Location &a, Location &b, string &attribute) {
 
 }
 void merge(vector<Location> &locations, int left, int mid, int right, string &attribute) {
-    // Temporary arrays to hold the left and right subarrays
     vector<Location> temp(right - left + 1);
 
     int i = left;     // Initial index of the left subarray
     int j = mid + 1;  // Initial index of the right subarray
     int k = 0;        // Initial index of the temporary array
 
-    // Merge the two subarrays into temp[]
     while (i <= mid && j <= right) {
         if (compareLocations(locations[i], locations[j], attribute)) {
             temp[k++] = locations[i++];
@@ -79,17 +77,14 @@ void merge(vector<Location> &locations, int left, int mid, int right, string &at
         }
     }
 
-    // Copy any remaining elements from the left subarray
     while (i <= mid) {
         temp[k++] = locations[i++];
     }
 
-    // Copy any remaining elements from the right subarray
     while (j <= right) {
         temp[k++] = locations[j++];
     }
 
-    // Copy the sorted elements back into the original array
     for (int t = 0; t < temp.size(); ++t) {
         locations[left + t] = temp[t];
     }
