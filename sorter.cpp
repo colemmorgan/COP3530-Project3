@@ -65,9 +65,9 @@ bool compareLocations(Location &a, Location &b, string &attribute) {
 void merge(vector<Location> &locations, int left, int mid, int right, string &attribute) {
     vector<Location> temp(right - left + 1);
 
-    int i = left;     // Initial index of the left subarray
-    int j = mid + 1;  // Initial index of the right subarray
-    int k = 0;        // Initial index of the temporary array
+    int i = left;
+    int j = mid + 1;
+    int k = 0;
 
     while (i <= mid && j <= right) {
         if (compareLocations(locations[i], locations[j], attribute)) {
@@ -94,11 +94,9 @@ void mergeRecursionHelper(vector<Location> &locations, int left, int right, stri
     if (left < right) {
         int mid = left + (right - left) / 2;
 
-        // Recursively sort first and second halves
         mergeRecursionHelper(locations, left, mid, attribute);
         mergeRecursionHelper(locations, mid + 1, right, attribute);
 
-        // Merge the sorted halves
         merge(locations, left, mid, right, attribute);
     }
 }
