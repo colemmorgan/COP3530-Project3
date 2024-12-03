@@ -3,6 +3,7 @@
 #include <location.h>
 #include <QMainWindow>
 #include "SortingButtons.h"
+#include "table.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -24,5 +25,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     SortingButtons *sortingButtons;
+    Table table;
 };
 #endif // MAINWINDOW_H

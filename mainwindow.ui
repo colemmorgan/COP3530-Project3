@@ -99,7 +99,7 @@ QWidget  &gt; QPushButton  {
          <number>0</number>
         </property>
         <item>
-         <widget class="QPushButton" name="population_sorter">
+         <widget class="QPushButton" name="population">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -112,7 +112,7 @@ QWidget  &gt; QPushButton  {
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="walkability_sorter">
+         <widget class="QPushButton" name="walkability">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -125,7 +125,7 @@ QWidget  &gt; QPushButton  {
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="employment_sorter">
+         <widget class="QPushButton" name="totalEmployment">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -138,7 +138,7 @@ QWidget  &gt; QPushButton  {
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="size_sorter">
+         <widget class="QPushButton" name="size">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -151,7 +151,7 @@ QWidget  &gt; QPushButton  {
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="households_sorter">
+         <widget class="QPushButton" name="numHouseholds">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -164,7 +164,7 @@ QWidget  &gt; QPushButton  {
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="transit_sorter">
+         <widget class="QPushButton" name="transitScore">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -213,12 +213,12 @@ padding-right: 18px;
           </property>
           <item>
            <property name="text">
-            <string>Highest</string>
+            <string>Least</string>
            </property>
           </item>
           <item>
            <property name="text">
-            <string>Lowest</string>
+            <string>Greatest</string>
            </property>
           </item>
          </widget>
@@ -320,7 +320,7 @@ border-top: 1px solid #505050
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit">
+          <widget class="QLineEdit" name="row_count">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
              <horstretch>0</horstretch>
@@ -331,7 +331,7 @@ border-top: 1px solid #505050
             <string notr="true">background-color: #343434;</string>
            </property>
            <property name="text">
-            <string>2 million</string>
+            <string>Loading...</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignmentFlag::AlignCenter</set>

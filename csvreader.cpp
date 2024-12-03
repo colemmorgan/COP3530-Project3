@@ -26,6 +26,7 @@ vector<Location> CSVReader::into_vector(string name) {
         cout << "open" << endl;
     } else {
         cout << "not open" << endl;
+        return Locations; // Return empty vector if file is not open
     }
 
     //read first line with labels
@@ -34,7 +35,7 @@ vector<Location> CSVReader::into_vector(string name) {
 
     //while loop to read each line of the csv
     string singleLine;
-    while (getline(datafile, singleLine)){
+    while (getline(datafile, singleLine)) {
         //variable to help when delimiters are inconsistent
         string garbage;
 
@@ -50,7 +51,7 @@ vector<Location> CSVReader::into_vector(string name) {
 
         //blockGroup
         string blockGroup;
-        getline(stream, blockGroup, ',' );
+        getline(stream, blockGroup, ',');
         locstruct.blockGroup = blockGroup;
 
         //name of location (can be in two different columns, logic to compensate)
@@ -76,60 +77,49 @@ vector<Location> CSVReader::into_vector(string name) {
         }
 
         //logic if name is not in csv
-        if (name1 != "") {
-            finalname = name1;
-        }
-        else if (name2 != ""){
-            finalname = name2;
-        } else {
-            tovect = false;
-        }
+        finalname = !name1.empty() ? name1 : name2;
+        if (finalname.empty()) tovect = false;
 
         locstruct.name = finalname;
 
         //population
         string pop;
         getline(stream, pop, ',');
-        int intpop = stoi(pop);
-        locstruct.population = intpop;
+        locstruct.population = !pop.empty() ? stoi(pop) : 0;
 
         //number of households
         string housenum;
         getline(stream, housenum, ',');
-        int inthousenum = stoi(housenum);
-        locstruct.numHouseholds = inthousenum;
+        locstruct.numHouseholds = !housenum.empty() ? stoi(housenum) : 0;
 
         //employment
         string totemploy;
         getline(stream, totemploy, ',');
-        int inttotemploy = stoi(housenum);
-        locstruct.totalEmployment = inttotemploy;
+        locstruct.totalEmployment = !totemploy.empty() ? stoi(totemploy) : 0;
 
         //size
         string size;
         getline(stream, size, ',');
-        float fsize = stof(size);
-        locstruct.size = fsize;
+        locstruct.size = !size.empty() ? stof(size) : 0.0f;
 
         //walkability
         string walkability;
         getline(stream, walkability, ',');
-        float fwalkability = stof(walkability);
-        locstruct.walkability = fwalkability;
+        locstruct.walkability = !walkability.empty() ? stof(walkability) : 0.0f;
 
         //transitScore
         string transitScore;
         getline(stream, transitScore, ',');
-        float ftransitScore = stof(transitScore);
-        locstruct.transitScore = ftransitScore;
+        locstruct.transitScore = !transitScore.empty() ? stof(transitScore) : 0.0f;
 
-        if (tovect == true) {
+        if (tovect) {
             Locations.push_back(locstruct);
         }
     }
 
     return Locations;
 }
+
 
 void CSVReader::printLocations(const vector<Location>& locations) {
     for (size_t i = 0; i < locations.size(); ++i) { // Traditional for loop
