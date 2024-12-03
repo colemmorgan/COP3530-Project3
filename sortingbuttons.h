@@ -24,7 +24,7 @@ private:
     QButtonGroup *buttonGroup;
     Table* table = nullptr;
     std::string selectedButtonName = "";
-    const QString defaultStyle = "background-color: #505050; color: white; border-right: 1px solid #505050;";
+    const QString defaultStyle = "background-color: #505050; color: white; border-right: 1px solid #505050; border-right: 1px solid #242424";
     const QString selectedStyle = "background-color: #006F88; color: white; border-right: 1px solid #242424;";
 };
 

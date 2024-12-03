@@ -1,7 +1,7 @@
 #include "sortingbuttons.h"
-#include <iostream>
 
 SortingButtons::SortingButtons(QObject *parent) : QObject(parent), buttonGroup(new QButtonGroup) {
+    // connect a sorting button being clicked to the handleButtonClick function.
     connect(buttonGroup, &QButtonGroup::buttonClicked, this, &SortingButtons::handleButtonClicked);
 }
 
@@ -15,14 +15,14 @@ void SortingButtons::addButtonToGroup(QPushButton *button) {
 }
 
 void SortingButtons::handleButtonClicked(QAbstractButton *button) {
-
+    // Ensure all buttons have the default style
     foreach (QAbstractButton *btn, buttonGroup->buttons()) {
         btn->setStyleSheet(defaultStyle);
     }
 
-    button->setStyleSheet(selectedStyle);
+    button->setStyleSheet(selectedStyle); // set the clicked button as active style
     selectedButtonName = button->objectName().toStdString();
-    table->sortData(selectedButtonName);
+    table->sortData(selectedButtonName); // sort based on attribute
 }
 
 std::string SortingButtons::getSelectedButtonName() {

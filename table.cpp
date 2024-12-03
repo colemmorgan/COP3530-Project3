@@ -2,37 +2,70 @@
 #include <QString>
 #include <QTableWidgetItem>
 #include <algorithm>
-#include <iostream>
-
 
 
 Table::Table() {
+    // load locations into table
     CSVReader csv;
     locations = csv.into_vector("./data.csv");
 }
 
+void Table::setUi(Ui::MainWindow *ui) {
+    this->ui = ui;
+}
+
 int Table::getSize() {
-    return int(locations.size());
+    return static_cast<int>(locations.size());
 }
 
 void Table::sortData(std::string attribute) {
+
+    ui->progressBar->setRange(0, 100);
+    ui->progressBar->setValue(0);
+    ui->progressBar->setVisible(true);
+    ui->locationTable->clear();
+    QCoreApplication::processEvents();
+
+    // Complete each sorting method, update the timings and progress bar, then process the event q
     std::vector<Location> copy = locations;
-    double timeTaken = sorter.mergeSort(&copy, attribute);
-    std::cout << timeTaken << std::endl;
-}
+    double mergeTime = sorter.mergeSort(&copy, attribute);
+    ui->mergeTime->setText(QString::number(mergeTime) + "s");
+    ui->progressBar->setValue(33);
+    QCoreApplication::processEvents();
 
-void Table::handleSortModeChange(QTableWidget *tableWidget, std::string mode) {
-    if (sortMode == mode) return; // Avoid redundant operations
+    copy = locations;
+    double shellTime = sorter.shellSort(&copy, attribute);
+    ui->shellTime->setText(QString::number(shellTime) + "s");
+    ui->progressBar->setValue(66);
+    QCoreApplication::processEvents();
+
+    double bubbleTime = sorter.shellSort(&locations, attribute);
+    ui->bubbleTime->setText(QString::number(bubbleTime) + "s");
+    ui->progressBar->setValue(100);
+    QCoreApplication::processEvents();
+
+    // repopulate table with sorted data and hide progress bar
+    populate();
+    ui->progressBar->setVisible(false);
+}
+void Table::handleSortModeChange(std::string mode) {
+    if (!ui) return;
+    if (sortMode == mode) return;
+
     sortMode = mode;
-    tableWidget->setRowCount(0);
-    populate(tableWidget);
+    // Clear the table and repopulate
+    ui->locationTable->setRowCount(0);
+    populate();
 }
 
+void Table::populate() {
+    if (!ui) return;
+    QTableWidget *tableWidget = ui->locationTable;
 
-void Table::populate(QTableWidget *tableWidget) {
-    int totalLocations = locations.size();
+    int totalLocations = static_cast<int>(locations.size());
     int minimum = std::min(totalLocations, 100);
 
+    // Construct Table
     tableWidget->setRowCount(minimum);
     tableWidget->setColumnCount(9);
     tableWidget->setHorizontalHeaderLabels({
@@ -40,20 +73,25 @@ void Table::populate(QTableWidget *tableWidget) {
         "Households", "Employment", "Size", "Walkability", "Transit"
     });
 
-
-    if(sortMode == "Greatest") {
+    // Greatest 100 elements
+    if (sortMode == "Greatest") {
         for (int i = 0; i < minimum; ++i) {
-            displayData(tableWidget, i, locations[totalLocations - minimum + i]);
+            displayData(i, locations[totalLocations - 1 - i]);
         }
     }
+    // Least 100 elements
     else {
-        for(int i = 0; i < minimum;++i) {
-            displayData(tableWidget, i, locations[i]);
+        for (int i = 0; i < minimum; ++i) {
+            displayData(i, locations[i]);
         }
     }
 }
 
-void Table::displayData(QTableWidget *tableWidget, int row, const Location &loc){
+void Table::displayData(int row, const Location &loc) {
+    if (!ui) return;
+    QTableWidget *tableWidget = ui->locationTable;
+
+    // Create row from location
     QTableWidgetItem *tractCodeItem = new QTableWidgetItem(QString::fromStdString(loc.tractCode));
     QTableWidgetItem *blockGroupItem = new QTableWidgetItem(QString::fromStdString(loc.blockGroup));
     QTableWidgetItem *nameItem = new QTableWidgetItem(QString::fromStdString(loc.name));

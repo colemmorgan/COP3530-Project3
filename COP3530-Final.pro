@@ -35,7 +35,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 # Include the data file in the DISTFILES section
 DISTFILES += \
     .gitignore \
-    data.csv
 
 
 
