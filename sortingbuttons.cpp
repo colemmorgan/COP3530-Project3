@@ -1,7 +1,12 @@
 #include "sortingbuttons.h"
+#include <iostream>
 
 SortingButtons::SortingButtons(QObject *parent) : QObject(parent), buttonGroup(new QButtonGroup) {
     connect(buttonGroup, &QButtonGroup::buttonClicked, this, &SortingButtons::handleButtonClicked);
+}
+
+void SortingButtons::setTable(Table* _table) {
+    table = _table;
 }
 
 void SortingButtons::addButtonToGroup(QPushButton *button) {
@@ -17,6 +22,7 @@ void SortingButtons::handleButtonClicked(QAbstractButton *button) {
 
     button->setStyleSheet(selectedStyle);
     selectedButtonName = button->objectName().toStdString();
+    table->sortData(selectedButtonName);
 }
 
 std::string SortingButtons::getSelectedButtonName() {

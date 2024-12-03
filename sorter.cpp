@@ -101,14 +101,14 @@ void mergeRecursionHelper(vector<Location> &locations, int left, int right, stri
     }
 }
 
-double mergeSort(vector<Location> *locations, string attribute) {
+double Sorter::mergeSort(vector<Location> *locations, string attribute) {
     auto start = chrono::high_resolution_clock::now();
     mergeRecursionHelper(*locations, 0, locations->size() - 1, attribute);
     auto end = chrono::high_resolution_clock::now();
     return chrono::duration<double>(end - start).count();
 }
 
-double shellSort(vector<Location> *locations, string attribute) {
+double Sorter::shellSort(vector<Location> *locations, string attribute) {
     auto start = chrono::high_resolution_clock::now();
     int n = locations->size();
     for (int gap = n / 2; gap > 0; gap /= 2) {
@@ -125,7 +125,7 @@ double shellSort(vector<Location> *locations, string attribute) {
     return chrono::duration<double>(end - start).count();
 }
 
-double bubbleSort(vector<Location> *locations, string attribute) {
+double Sorter::bubbleSort(vector<Location> *locations, string attribute) {
     auto start = chrono::high_resolution_clock::now();
     int n = locations->size();
     for (int i = 0; i < n - 1; ++i) {

@@ -32,5 +32,10 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
+# Include the data file in the DISTFILES section
 DISTFILES += \
-    .gitignore
+    .gitignore \
+    data.csv
+
+
+

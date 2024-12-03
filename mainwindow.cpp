@@ -1,11 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "location.h"
 #include <QTableWidget>
 #include <QTableWidgetItem>
-#include <QDebug>
-#include <vector>
-#include "table.h"
+#include <iostream>
+
 
 
 
@@ -13,20 +11,23 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , sortingButtons(new SortingButtons(this))
+    , table()
 {
     ui->setupUi(this);
+    sortingButtons->setTable(&table);
+    setWindowTitle("Relocation Assistant");
 
-    sortingButtons->addButtonToGroup(ui->population_sorter);
-    sortingButtons->addButtonToGroup(ui->walkability_sorter);
-    sortingButtons->addButtonToGroup(ui->employment_sorter);
-    sortingButtons->addButtonToGroup(ui->size_sorter);
-    sortingButtons->addButtonToGroup(ui->households_sorter);
-    sortingButtons->addButtonToGroup(ui->transit_sorter);
+    sortingButtons->addButtonToGroup(ui->population);
+    sortingButtons->addButtonToGroup(ui->walkability);
+    sortingButtons->addButtonToGroup(ui->totalEmployment);
+    sortingButtons->addButtonToGroup(ui->size);
+    sortingButtons->addButtonToGroup(ui->numHouseholds);
+    sortingButtons->addButtonToGroup(ui->transitScore);
 
     ui->locationTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     ui->locationTable->setShowGrid(false);
-    std::vector<Location> locations = Table::generateLocations(100);
-    Table::populate(ui->locationTable, locations);
+    table.populate(ui->locationTable);
+    ui->row_count->setText(QString::number(table.getSize()));
 
     connect(ui->sort, QOverload<int>::of(&QComboBox::currentIndexChanged), this, &MainWindow::onSortByChanged);
 
@@ -40,6 +41,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::onSortByChanged(int index)
 {
-
-    if(sortingButtons->getSelectedButtonName().empty()) return;
+    std::string mode = ui->sort->itemText(index).toStdString();
+    std::cout << mode << std::endl;
+    table.handleSortModeChange(ui->locationTable, mode);
 }
