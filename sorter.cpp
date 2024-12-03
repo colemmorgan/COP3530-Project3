@@ -92,12 +92,12 @@ void merge(vector<Location> &locations, int left, int mid, int right, string &at
 
 void mergeRecursionHelper(vector<Location> &locations, int left, int right, string &attribute) {
     if (left < right) {
-        int mid = left + (right - left) / 2;
+        int m = left + (right - left) / 2;
 
-        mergeRecursionHelper(locations, left, mid, attribute);
-        mergeRecursionHelper(locations, mid + 1, right, attribute);
+        mergeRecursionHelper(locations, left, m, attribute);
+        mergeRecursionHelper(locations, m + 1, right, attribute);
 
-        merge(locations, left, mid, right, attribute);
+        merge(locations, left, m, right, attribute);
     }
 }
 
