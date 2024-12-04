@@ -1,7 +1,7 @@
 
 # Relocation Assistant
 
-Relocation Assistant is a C++ and Qt cross-platform desktop application that allows users to compare every cenus tract in the United States based on geographic and socio-economic factors. This application was created for the COP3530 final project.
+Relocation Assistant is a C++ and Qt cross-platform desktop application that allows users to compare every census tract in the United States based on geographic and socio-economic factors. This application was created for the COP3530 final project.
 
 
 
