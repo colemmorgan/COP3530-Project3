@@ -3,7 +3,7 @@
 #include <chrono>
 
 using namespace std;
-
+//used to make sorting functions abstract and work with any attribute
 bool compareLocations(Location &a, Location &b, string &attribute) {
     if (attribute == "tractCode") {
         if (a.tractCode < b.tractCode) {
@@ -62,6 +62,7 @@ bool compareLocations(Location &a, Location &b, string &attribute) {
     }
 
 }
+//merge helper for merge sort
 void merge(vector<Location> &locations, int left, int mid, int right, string &attribute) {
     vector<Location> temp(right - left + 1);
 
@@ -89,7 +90,7 @@ void merge(vector<Location> &locations, int left, int mid, int right, string &at
         locations[left + t] = temp[t];
     }
 }
-
+//performs recursion for merge sort
 void mergeRecursionHelper(vector<Location> &locations, int left, int right, string &attribute) {
     if (left < right) {
         int mid = left + (right - left) / 2;
@@ -100,14 +101,14 @@ void mergeRecursionHelper(vector<Location> &locations, int left, int right, stri
         merge(locations, left, mid, right, attribute);
     }
 }
-
+//wrapper function to run merge sort and time it
 double Sorter::mergeSort(vector<Location> *locations, string attribute) {
     auto start = chrono::high_resolution_clock::now();
     mergeRecursionHelper(*locations, 0, locations->size() - 1, attribute);
     auto end = chrono::high_resolution_clock::now();
     return chrono::duration<double>(end - start).count();
 }
-
+//performs and times shell sort
 double Sorter::shellSort(vector<Location> *locations, string attribute) {
     auto start = chrono::high_resolution_clock::now();
     int n = locations->size();
@@ -124,7 +125,7 @@ double Sorter::shellSort(vector<Location> *locations, string attribute) {
     auto end = chrono::high_resolution_clock::now();
     return chrono::duration<double>(end - start).count();
 }
-
+//performs and times bubble sort
 double Sorter::bubbleSort(vector<Location> *locations, string attribute) {
     auto start = chrono::high_resolution_clock::now();
     int n = locations->size();
